@@ -22,7 +22,7 @@ html, body {
 
 body {
     overflow: auto;
-    min-width: 1200px;
+    min-width: 1500px;
 }
 /* header */
 .separate::after {
