@@ -1,0 +1,101 @@
+
+/* grid */
+.grid-container {
+    width: 1200px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.row {
+    display: flex;
+    margin: 0 -5px;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.column-5 {
+    width: 20%;
+    margin-top: 10px;
+    padding: 0 5px;
+}
+
+.column-6 {
+    width: 16.66667%;
+    margin-top: 10px;
+    padding: 0 5px;
+}
+/*  */
+.center {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.show {
+    display: block !important;
+}
+
+.white {
+    color: white !important;
+}
+
+.pd4 {
+    padding: 4px !important;
+}
+
+.ml8 {
+    margin-left: 8px !important; 
+}
+
+.mr8 {
+    margin-right: 8px !important; 
+}
+
+.mb20 {
+    margin-bottom: 20px !important;
+}
+
+.mt20 {
+    margin-top: 20px !important;
+}
+
+
+/* animations */
+@keyframes fadeIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes opIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes opOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
