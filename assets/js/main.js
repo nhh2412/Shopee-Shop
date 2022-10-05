@@ -4,122 +4,73 @@ const web = {
     currentImgCarouselTransition: -1200,
     currentImgCarouselDot: 0,
     isCarousel: false,
-    buttonChat: document.createElement('button'),
     interval: null,
     currentProductSort: 'popular',
     currentPagProduct: 1,
 
-    notifies: [
-        {
-            title: 'Chỉ 2 phút giúp Shopee hiểu shop hơn!',
-            content: 'Quảng cáo của Shopee để lại cho bạn ấn tượng gì?Hãy nói cho Shopee nghe tại đây nhé!',
-            status: 'unread',
-            image: './assets/img/shop/shopee.png',
-        },
-        {
-            title: 'Giao kiện hàng thành công',
-            content: 'Kiện hàng <h4>SPXVN029582878637</h4>của đơn hàng <h4>220707R1FS3AXF</h4> đã giao đến bạn',
-            status: 'read',
-            image: './assets/img/shop/lhdctl.jpg',
-        },
-        {
-            title: 'Chỉ 2 phút giúp Shopee hiểu shop hơn!',
-            content: 'Quảng cáo của Shopee để lại cho bạn ấn tượng gì?Hãy nói cho Shopee nghe tại đây nhé!',
-            status: 'unread',
-            image: './assets/img/shop/shopee.png',
-        },
-        {
-            title: 'Giao kiện hàng thành công',
-            content: 'Kiện hàng <h4>SPXVN029582878637</h4>của đơn hàng <h4>220707R1FS3AXF</h4> đã giao đến bạn',
-            status: 'read',
-            image: './assets/img/shop/lhdctl.jpg',
-        },
-        {
-            title: 'Chỉ 2 phút giúp Shopee hiểu shop hơn!',
-            content: 'Quảng cáo của Shopee để lại cho bạn ấn tượng gì?Hãy nói cho Shopee nghe tại đây nhé!',
-            status: 'unread',
-            image: './assets/img/shop/shopee.png',
-        },
-        {
-            title: 'Giao kiện hàng thành công',
-            content: 'Kiện hàng <h4>SPXVN029582878637</h4>của đơn hàng <h4>220707R1FS3AXF</h4> đã giao đến bạn',
-            status: 'read',
-            image: './assets/img/shop/lhdctl.jpg',
-        },
-    ],
+    user: {
+        userFollowing: false,
 
-    searchHistory: ['Sách - Mộ Đom Đóm (Văn Học)', 'Sách - Khu Vườn Ngôn Từ - Shinkai Makoto'],
+        notifies: [
+            {
+                title: 'Chỉ 2 phút giúp Shopee hiểu shop hơn!',
+                content: 'Quảng cáo của Shopee để lại cho bạn ấn tượng gì?Hãy nói cho Shopee nghe tại đây nhé!',
+                status: 'unread',
+                image: './assets/img/shop/shopee.png',
+            },
+            {
+                title: 'Giao kiện hàng thành công',
+                content: 'Kiện hàng <h4>SPXVN029582878637</h4>của đơn hàng <h4>220707R1FS3AXF</h4> đã giao đến bạn',
+                status: 'read',
+                image: './assets/img/shop/lhdctl.jpg',
+            },
+            {
+                title: 'Chỉ 2 phút giúp Shopee hiểu shop hơn!',
+                content: 'Quảng cáo của Shopee để lại cho bạn ấn tượng gì?Hãy nói cho Shopee nghe tại đây nhé!',
+                status: 'unread',
+                image: './assets/img/shop/shopee.png',
+            },
+            {
+                title: 'Giao kiện hàng thành công',
+                content: 'Kiện hàng <h4>SPXVN029582878637</h4>của đơn hàng <h4>220707R1FS3AXF</h4> đã giao đến bạn',
+                status: 'read',
+                image: './assets/img/shop/lhdctl.jpg',
+            },
+            {
+                title: 'Chỉ 2 phút giúp Shopee hiểu shop hơn!',
+                content: 'Quảng cáo của Shopee để lại cho bạn ấn tượng gì?Hãy nói cho Shopee nghe tại đây nhé!',
+                status: 'unread',
+                image: './assets/img/shop/shopee.png',
+            },
+            {
+                title: 'Giao kiện hàng thành công',
+                content: 'Kiện hàng <h4>SPXVN029582878637</h4>của đơn hàng <h4>220707R1FS3AXF</h4> đã giao đến bạn',
+                status: 'read',
+                image: './assets/img/shop/lhdctl.jpg',
+            },
+        ],
 
-    navHistory: [
-        'Kim Đồng',
-        'One Piece',
-        'Khô Gà Thầy Giáo Ba',
-        'Conan Tập 85',
-        'Conan Tập 97',
-        'Conan Tập 86',
-        'Máy In Shoptida',
-        'Khu Vườn Ngôn Từ Sách',
-    ],
+        searchHistory: ['Sách - Mộ Đom Đóm (Văn Học)', 'Sách - Khu Vườn Ngôn Từ - Shinkai Makoto'],
 
-    cart: [],
+        navHistory: [
+            'Kim Đồng',
+            'One Piece',
+            'Khô Gà Thầy Giáo Ba',
+            'Conan Tập 85',
+            'Conan Tập 97',
+            'Conan Tập 86',
+            'Máy In Shoptida',
+            'Khu Vườn Ngôn Từ Sách',
+        ],
 
-    categories: [
-        {
-            name: 'Sản Phẩm',
-            pag: '14',
-        },
-        {
-            name: 'SĂN SALE',
-            pag: '10',
-        },
-        {
-            name: 'Trinh Thám - Kinh Dị',
-            pag: '9',
-        },
-        {
-            name: 'Văn Học Hiện Đại',
-            pag: '8',
-        },
-        {
-            name: 'Văn Học Kinh Điển',
-            pag: '7',
-        },
-        {
-            name: 'Light Novel',
-            pag: '6',
-        },
-        {
-            name: 'Manga - Comic',
-            pag: '5',
-        },
-        {
-            name: 'Sách Học Ngữ',
-            pag: '1',
-        },
-        {
-            name: 'Sách Thiếu Nhi',
-            pag: '1',
-        },
-        {
-            name: 'Tiểu Thuyết',
-            pag: '1',
-        },
-        {
-            name: 'Combo Sách',
-            pag: '1',
-        },
-        {
-            name: 'Sách Mới',
-            pag: '1',
-        },
-    ],
+        cart: [],
+    },
 
     shop: {
         name: 'IPM Việt Nam',
         status: 'Online 28 phút trước',
         avatar: './assets/img/shop/ipm.jpg',
         mall: './assets/img/icon/ShopeeMall.png',
-        userFollowing: false,
         product: 564,
         following: 1,
         chatRatio: 88,
@@ -128,6 +79,56 @@ const web = {
         rateTotal: 108199,
         join: 18,
         imgCarousel: ['./assets/img/shop/crs1.jpg', './assets/img/shop/crs2.jpg', './assets/img/shop/crs3.jpg'],
+        categories: [
+            {
+                name: 'Sản Phẩm',
+                pag: '14',
+            },
+            {
+                name: 'SĂN SALE',
+                pag: '10',
+            },
+            {
+                name: 'Trinh Thám - Kinh Dị',
+                pag: '9',
+            },
+            {
+                name: 'Văn Học Hiện Đại',
+                pag: '8',
+            },
+            {
+                name: 'Văn Học Kinh Điển',
+                pag: '7',
+            },
+            {
+                name: 'Light Novel',
+                pag: '6',
+            },
+            {
+                name: 'Manga - Comic',
+                pag: '5',
+            },
+            {
+                name: 'Sách Học Ngữ',
+                pag: '1',
+            },
+            {
+                name: 'Sách Thiếu Nhi',
+                pag: '1',
+            },
+            {
+                name: 'Tiểu Thuyết',
+                pag: '1',
+            },
+            {
+                name: 'Combo Sách',
+                pag: '1',
+            },
+            {
+                name: 'Sách Mới',
+                pag: '1',
+            },
+        ],
         products: [
             {
                 name: 'Sách - Khu Vườn Ngôn Từ',
@@ -462,16 +463,16 @@ const web = {
         const $$ = document.querySelectorAll.bind(document)
         // notification
         const notificationIcon = $('.notification--icon')
-        const notificationUnread = this.notifies.filter((e) => e.status === 'unread').length
+        const notificationUnread = this.user.notifies.filter((e) => e.status === 'unread').length
         notificationIcon.innerHTML = `<i class="fa-regular fa-bell"></i> Thông Báo <span>3</span>`
         if (!notificationUnread) notificationIcon.innerHTML = `<i class="fa-regular fa-bell"></i>Thông Báo`
 
         // search
-        const htmlSearchHistory = this.searchHistory.map((sH) => `<a href="#!">${sH}</a>`)
+        const htmlSearchHistory = this.user.searchHistory.map((sH) => `<a href="#!">${sH}</a>`)
 
         $('.history-search-person').innerHTML = htmlSearchHistory.join('')
 
-        const htmlNavHistory = this.navHistory.map((nH) => `<a href="#!">${nH}</a>`)
+        const htmlNavHistory = this.user.navHistory.map((nH) => `<a href="#!">${nH}</a>`)
 
         $('.nav-history').innerHTML = htmlNavHistory.join('')
 
@@ -539,8 +540,8 @@ const web = {
         $('.shop-info').innerHTML = htmlShop
 
         // shop-menu
-        if (this.categories.length > 5) {
-            const htmlShopMenu = this.categories.map((category, i) => {
+        if (this.shop.categories.length > 5) {
+            const htmlShopMenu = this.shop.categories.map((category, i) => {
                 if (i < 5) {
                     if (i == 0) {
                         return `<div class="shop-menu--item-show"><a class="shop-menu--item" data-index = "${i}" href="#products-section">TẤT CẢ SẢN PHẨM</a></div>`
@@ -560,7 +561,7 @@ const web = {
             <div class="more-btn"><span>Thêm</span><i class="fa-solid fa-sort-down"></i><i class="fa-solid fa-sort-up"></i></div>
             `
         } else {
-            const htmlShopMenu = this.categories.map((category, i) => {
+            const htmlShopMenu = this.shop.categories.map((category, i) => {
                 if (i < 5) {
                     if (i == 0) {
                         return `<div class="shop-menu--item-show"><a class="shop-menu--item" data-index = "${i}" href="#products-section">TẤT CẢ SẢN PHẨM</a></div>`
@@ -639,7 +640,7 @@ const web = {
         $$('.carousel-dot')[this.currentImgCarouselDot].classList.add('carousel-dot--active')
 
         // category
-        const htmlCategories = this.categories.map(
+        const htmlCategories = this.shop.categories.map(
             (category, i) => `
             <div class="category-item category-item--${
                 this.currentCategoryIndex == i ? 'select' : ''
@@ -647,25 +648,17 @@ const web = {
         )
 
         $('.category-list').innerHTML = htmlCategories.join('')
-
-        // chat
-        this.buttonChat.classList.add('btn-chat')
-        this.buttonChat.innerHTML = `
-        <i class="fa-solid fa-comments"></i>
-        <span class="title">Chat</span>
-        `
-        chat.appendChild(this.buttonChat)
     },
 
     defineProperties: function () {
         Object.defineProperty(this, 'currentCategory', {
-            get: () => this.categories[this.currentCategoryIndex],
+            get: () => this.shop.categories[this.currentCategoryIndex],
         })
     },
 
     loadCart: function () {
         const $ = document.querySelector.bind(document)
-        const quantityCartProduct = this.cart.length
+        const quantityCartProduct = this.user.cart.length
 
         $('.cart-icon').innerHTML = '<i class="fa-solid fa-cart-shopping"></i>'
 
@@ -832,6 +825,108 @@ const web = {
         }, 500)
     },
 
+    chat: function () {
+        const $ = document.querySelector.bind(document)
+        const buttonChat = document.createElement('button')
+        const chat = $('#chat')
+
+        // button chat
+        buttonChat.classList.add('btn-chat')
+        buttonChat.innerHTML = `
+                <i class="fa-solid fa-comments"></i>
+                <span class="title">Chat</span>
+                `
+        chat.appendChild(buttonChat)
+
+        // click
+        const showChat = () => {
+            const chatWindow = document.createElement('div')
+            const options = document.createElement('div')
+            chatWindow.classList.add('chatWindow')
+            options.classList.add('options')
+            chatWindow.innerHTML = `
+            <div class="chatWindow__header">
+                    <span>Chat</span>
+                    <div class="chatWindow__header--btn">
+                        <button class="btn-right" title="Ẩn cửa sổ Chat"><i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="chat-icon"><path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H9v-1h5V2H9V1h5zM2 13v1h1v1H2a1 1 0 01-.993-.883L1 14v-1h1zm6 1v1H4v-1h4zM2 3.999V12H1V3.999h1zm5.854 1.319l2.828 2.828a.5.5 0 010 .708l-2.828 2.828a.5.5 0 11-.708-.707L9.121 9H4.5a.5.5 0 010-1h4.621L7.146 6.025a.5.5 0 11.708-.707zM3 1v1H2v.999H1V2a1 1 0 01.883-.993L2 1h1zm5 0v1H4V1h4z"></path></svg></i></button>
+                        <button class="btn-down" title="Thu gọn"><i><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="chat-icon"><path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H2a1 1 0 01-1-1V2a1 1 0 011-1h12zm0 1H2v12h12V2zm-2.904 5.268l-2.828 2.828a.5.5 0 01-.707 0L4.732 7.268a.5.5 0 11.707-.707l2.475 2.475L10.39 6.56a.5.5 0 11.707.707z"></path></svg></i></button>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="chatWindow__main">
+                    <div class="chatWindow__main--mess">
+                        <img src="./assets/img/background/chat.png" alt="" width="162" height="144">
+                        <p>Xin Chào!</p>
+                    </div>
+                    <!--  -->
+                    <div class="chatWindow__main--list">
+                        <div class="header">
+                            <div class="search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" placeholder="Tìm theo tên khách hàng">
+                            </div>
+                            <div class="options">
+                                Tất cả
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="main">
+                            <img src="./assets/img/background/chat1.png" alt="" width="120" height="80">
+                            <p>Không tìm thấy cuộc hội thoại nào.</p>
+                        </div>
+                    </div>
+                </div>
+            `
+
+            chat.removeChild(buttonChat)
+            chat.appendChild(chatWindow)
+
+            $('.btn-down').onclick = () => {
+                $('.chatWindow').style = 'animation: fadeOut ease .4s;'
+                setTimeout(() => {
+                    chat.removeChild(chatWindow)
+
+                    chat.appendChild(buttonChat)
+                }, 300)
+            }
+
+            $('.search input').onfocus = () => {
+                $('.header .options').style = 'display: none'
+                $('.search').style = 'border: 1px solid #2673dd'
+                $('.search input').style = 'width: 100%'
+            }
+            $('.search input').onblur = () => {
+                $('.header .options').style = 'display: flex'
+                $('.search').style = 'border: none'
+                $('.search input').style = 'width: 147px'
+            }
+
+            $('.btn-right').onclick = function () {
+                $('.chatWindow').classList.toggle('half')
+                if ($('.chatWindow').classList.contains('half')) {
+                    $('.chatWindow').style = 'width: 224px'
+                    $('.chatWindow__main--mess').style = 'width: 0;opacity: 0'
+                    this.title = 'Xem cửa sổ Chat'
+                    this.innerHTML = `
+                    <i class="_3kEAcT1Mk5 src-pages-ChatWindow-index__show-dialog--1vT1i src-pages-ChatWindow-index__operator-item--JM24S"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="chat-icon"><path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H9v-1h5V2H9V1h5zM2 13v1h1v1H2a1 1 0 01-.993-.883L1 14v-1h1zm6 1v1H4v-1h4zM2 3.999V12H1V3.999h1zm4.975 1.319a.5.5 0 01.707.707L5.707 8h4.621a.5.5 0 010 1h-4.62l1.974 1.975a.5.5 0 01-.707.707L4.146 8.854a.5.5 0 010-.708zM3 1v1H2v.999H1V2a1 1 0 01.883-.993L2 1h1zm5 0v1H4V1h4z"></path></svg></i>
+                    `
+                } else {
+                    $('.chatWindow').style = 'width: 508px'
+                    $('.chatWindow__main--mess').style = 'width: 286px;opacity: 0'
+                    this.title = 'Ẩn cửa sổ Chat'
+                    setTimeout(() => {
+                        $('.chatWindow__main--mess').style = 'opacity: 1'
+                    }, 150)
+                    this.innerHTML = `
+                    <i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="chat-icon"><path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H9v-1h5V2H9V1h5zM2 13v1h1v1H2a1 1 0 01-.993-.883L1 14v-1h1zm6 1v1H4v-1h4zM2 3.999V12H1V3.999h1zm5.854 1.319l2.828 2.828a.5.5 0 010 .708l-2.828 2.828a.5.5 0 11-.708-.707L9.121 9H4.5a.5.5 0 010-1h4.621L7.146 6.025a.5.5 0 11.708-.707zM3 1v1H2v.999H1V2a1 1 0 01.883-.993L2 1h1zm5 0v1H4V1h4z"></path></svg></i>
+                    `
+                }
+            }
+        }
+        buttonChat.onclick = showChat
+        $('.shop-info--btn .btn--chat').onclick = showChat
+    },
+
     handleEvent: function () {
         const $ = document.querySelector.bind(document)
         const $$ = document.querySelectorAll.bind(document)
@@ -864,7 +959,7 @@ const web = {
                 }, time)
             }
         }
-        const notifiList = this.notifies.map(
+        const notifiList = this.user.notifies.map(
             (notifi) => `
             <div class="new-notifi__item notifi-${notifi.status}">
                 <a href="#!">
@@ -968,7 +1063,7 @@ const web = {
         // cart
         const cart = $('.cart-wrap')
 
-        const htmlCartProducts = this.cart.map(
+        const htmlCartProducts = this.user.cart.map(
             (product) => `
         <a href="#!" class="product">
             <img src="${product.img}" alt="">
@@ -978,7 +1073,7 @@ const web = {
             </div>
         </a>`,
         )
-        const quantityCartProduct = this.cart.length
+        const quantityCartProduct = this.user.cart.length
         if (quantityCartProduct == 0) {
             toggle(
                 cart,
@@ -1009,7 +1104,7 @@ const web = {
             )
         }
         // shop menu more
-        const htmlShopMenuMore = this.categories.map((category, i) => {
+        const htmlShopMenuMore = this.shop.categories.map((category, i) => {
             if (i >= 5) {
                 return `<div class="shop-menu--item-show"><a class="shop-menu--item" data-index = "${i}" href="#products-section">${category.name}</a></div>`
             }
@@ -1018,10 +1113,10 @@ const web = {
         // follow
         const btnFollow = $('.btn--follow button')
         btnFollow.onclick = () => {
-            this.shop.userFollowing = !this.shop.userFollowing
+            this.user.userFollowing = !this.user.userFollowing
             const btnFollow = $('.btn--follow button')
 
-            if (this.shop.userFollowing) {
+            if (this.user.userFollowing) {
                 btnFollow.classList.add('follow')
                 btnFollow.innerHTML = 'ĐANG THEO'
             } else {
@@ -1169,7 +1264,7 @@ const web = {
                 const productId = e.target.closest('.product').dataset.index
                 this.shop.products.forEach((product) => {
                     if (product.id == productId) {
-                        this.cart.unshift(product)
+                        this.user.cart.unshift(product)
                     }
                 })
                 this.loadCart()
@@ -1209,100 +1304,12 @@ const web = {
                 this.loadProduct()
             }
         }
-
-        // chat
-        const chat = $('#chat')
-        const showChat = () => {
-            const chatWindow = document.createElement('div')
-            const options = document.createElement('div')
-            chatWindow.classList.add('chatWindow')
-            options.classList.add('options')
-            chatWindow.innerHTML = `
-            <div class="chatWindow__header">
-                    <span>Chat</span>
-                    <div class="chatWindow__header--btn">
-                        <button class="btn-right" title="Ẩn cửa sổ Chat"><i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="chat-icon"><path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H9v-1h5V2H9V1h5zM2 13v1h1v1H2a1 1 0 01-.993-.883L1 14v-1h1zm6 1v1H4v-1h4zM2 3.999V12H1V3.999h1zm5.854 1.319l2.828 2.828a.5.5 0 010 .708l-2.828 2.828a.5.5 0 11-.708-.707L9.121 9H4.5a.5.5 0 010-1h4.621L7.146 6.025a.5.5 0 11.708-.707zM3 1v1H2v.999H1V2a1 1 0 01.883-.993L2 1h1zm5 0v1H4V1h4z"></path></svg></i></button>
-                        <button class="btn-down" title="Thu gọn"><i><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="chat-icon"><path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H2a1 1 0 01-1-1V2a1 1 0 011-1h12zm0 1H2v12h12V2zm-2.904 5.268l-2.828 2.828a.5.5 0 01-.707 0L4.732 7.268a.5.5 0 11.707-.707l2.475 2.475L10.39 6.56a.5.5 0 11.707.707z"></path></svg></i></button>
-                    </div>
-                </div>
-                <!--  -->
-                <div class="chatWindow__main">
-                    <div class="chatWindow__main--mess">
-                        <img src="./assets/img/background/chat.png" alt="" width="162" height="144">
-                        <p>Xin Chào!</p>
-                    </div>
-                    <!--  -->
-                    <div class="chatWindow__main--list">
-                        <div class="header">
-                            <div class="search">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="text" placeholder="Tìm theo tên khách hàng">
-                            </div>
-                            <div class="options">
-                                Tất cả
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </div>
-                        </div>
-                        <div class="main">
-                            <img src="./assets/img/background/chat1.png" alt="" width="120" height="80">
-                            <p>Không tìm thấy cuộc hội thoại nào.</p>
-                        </div>
-                    </div>
-                </div>
-            `
-
-            chat.removeChild(this.buttonChat)
-            chat.appendChild(chatWindow)
-
-            $('.btn-down').onclick = () => {
-                $('.chatWindow').style = 'animation: fadeOut ease .4s;'
-                setTimeout(() => {
-                    chat.removeChild(chatWindow)
-
-                    chat.appendChild(this.buttonChat)
-                }, 300)
-            }
-
-            $('.search input').onfocus = () => {
-                $('.header .options').style = 'display: none'
-                $('.search').style = 'border: 1px solid #2673dd'
-                $('.search input').style = 'width: 100%'
-            }
-            $('.search input').onblur = () => {
-                $('.header .options').style = 'display: flex'
-                $('.search').style = 'border: none'
-                $('.search input').style = 'width: 147px'
-            }
-
-            $('.btn-right').onclick = function () {
-                $('.chatWindow').classList.toggle('half')
-                if ($('.chatWindow').classList.contains('half')) {
-                    $('.chatWindow').style = 'width: 224px'
-                    $('.chatWindow__main--mess').style = 'width: 0;opacity: 0'
-                    this.title = 'Xem cửa sổ Chat'
-                    this.innerHTML = `
-                    <i class="_3kEAcT1Mk5 src-pages-ChatWindow-index__show-dialog--1vT1i src-pages-ChatWindow-index__operator-item--JM24S"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="chat-icon"><path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H9v-1h5V2H9V1h5zM2 13v1h1v1H2a1 1 0 01-.993-.883L1 14v-1h1zm6 1v1H4v-1h4zM2 3.999V12H1V3.999h1zm4.975 1.319a.5.5 0 01.707.707L5.707 8h4.621a.5.5 0 010 1h-4.62l1.974 1.975a.5.5 0 01-.707.707L4.146 8.854a.5.5 0 010-.708zM3 1v1H2v.999H1V2a1 1 0 01.883-.993L2 1h1zm5 0v1H4V1h4z"></path></svg></i>
-                    `
-                } else {
-                    $('.chatWindow').style = 'width: 508px'
-                    $('.chatWindow__main--mess').style = 'width: 286px;opacity: 0'
-                    this.title = 'Ẩn cửa sổ Chat'
-                    setTimeout(() => {
-                        $('.chatWindow__main--mess').style = 'opacity: 1'
-                    }, 150)
-                    this.innerHTML = `
-                    <i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="chat-icon"><path d="M14 1a1 1 0 011 1v12a1 1 0 01-1 1H9v-1h5V2H9V1h5zM2 13v1h1v1H2a1 1 0 01-.993-.883L1 14v-1h1zm6 1v1H4v-1h4zM2 3.999V12H1V3.999h1zm5.854 1.319l2.828 2.828a.5.5 0 010 .708l-2.828 2.828a.5.5 0 11-.708-.707L9.121 9H4.5a.5.5 0 010-1h4.621L7.146 6.025a.5.5 0 11.708-.707zM3 1v1H2v.999H1V2a1 1 0 01.883-.993L2 1h1zm5 0v1H4V1h4z"></path></svg></i>
-                    `
-                }
-            }
-        }
-        this.buttonChat.onclick = showChat
-        $('.shop-info--btn .btn--chat').onclick = showChat
     },
 
     start: function () {
         this.defineProperties()
         this.render()
+        this.chat()
         this.loadCart()
         this.loadProduct()
         this.runInterval()
