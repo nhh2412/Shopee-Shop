@@ -706,7 +706,6 @@ const web = {
         const miniPagBtnL = $('.mini-pagination-button-left')
         const miniPagBtnR = $('.mini-pagination-button-right')
         const miniPagTotal = $('.mini-pagination__state--total')
-        const listPagination = $('.products-list__pagination')
 
         this.sortProducts()
         $('.category-item.category-item--select').classList.remove('category-item--select')
