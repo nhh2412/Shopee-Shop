@@ -770,59 +770,60 @@ const web = {
             : miniPagBtnR.classList.remove('disabled')
     },
 
-    runInterval: function () {
-        this.interval = setInterval((e) => {
-            this.currentImgCarouselTransition -= 1200
-            this.isCarousel = true
-            this.currentImgCarouselDot++
-            this.loadShopDeco()
+    shopDeco: {
+        runInterval: function (_this) {
+            _this.interval = setInterval(() => {
+                _this.currentImgCarouselTransition -= 1200
+                _this.isCarousel = true
+                _this.currentImgCarouselDot++
+                _this.shopDeco.loadShopDeco(_this)
+                setTimeout(() => {
+                    _this.isCarousel = false
+                }, 500)
+            }, 5000)
+        },
+
+        clearIntervalShopDeco: function (_this) {
+            clearInterval(_this.interval)
+        },
+
+        loadShopDeco: function (_this) {
+            const $ = document.querySelector.bind(document)
+            const $$ = document.querySelectorAll.bind(document)
+            const imgCarouselSection = $('.imgCarousel--section')
+            imgCarouselSection.style = `transform: translate(${_this.currentImgCarouselTransition}px, 0px);transition: all 500ms ease 0s`
+            switch (_this.currentImgCarouselTransition) {
+                case -4800:
+                    setTimeout(() => {
+                        _this.currentImgCarouselTransition = -1200
+                        imgCarouselSection.style = `transform: translate(${_this.currentImgCarouselTransition}px, 0px);transition: all 0 ease 0s`
+                    }, 500)
+                    break
+                case 0:
+                    setTimeout(() => {
+                        _this.currentImgCarouselTransition = -3600
+                        imgCarouselSection.style = `transform: translate(${_this.currentImgCarouselTransition}px, 0px);transition: all 0 ease 0s`
+                    }, 500)
+            }
+
+            switch (_this.currentImgCarouselDot) {
+                case 3:
+                    _this.currentImgCarouselDot = 0
+                    break
+                case -1:
+                    _this.currentImgCarouselDot = 2
+            }
+
+            $$('.carousel-dot')[_this.currentImgCarouselDot].classList.add('carousel-dot--active')
+
+            $$('.carousel-dot').forEach((e, i) => {
+                if (!(_this.currentImgCarouselDot == i) && e.classList.contains('carousel-dot--active'))
+                    e.classList.remove('carousel-dot--active')
+            })
             setTimeout(() => {
-                this.isCarousel = false
+                imgCarouselSection.style = `transform: translate(${_this.currentImgCarouselTransition}px, 0px)`
             }, 500)
-        }, 5000)
-    },
-
-    clearIntervalShopDeco: function () {
-        clearInterval(this.interval)
-    },
-
-    loadShopDeco: function () {
-        const $ = document.querySelector.bind(document)
-        const $$ = document.querySelectorAll.bind(document)
-        const imgCarouselSection = $('.imgCarousel--section')
-        imgCarouselSection.style = `transform: translate(${this.currentImgCarouselTransition}px, 0px);transition: all 500ms ease 0s`
-
-        switch (this.currentImgCarouselTransition) {
-            case -4800:
-                setTimeout(() => {
-                    this.currentImgCarouselTransition = -1200
-                    imgCarouselSection.style = `transform: translate(${this.currentImgCarouselTransition}px, 0px);transition: all 0 ease 0s`
-                }, 500)
-                break
-            case 0:
-                setTimeout(() => {
-                    this.currentImgCarouselTransition = -3600
-                    imgCarouselSection.style = `transform: translate(${this.currentImgCarouselTransition}px, 0px);transition: all 0 ease 0s`
-                }, 500)
-        }
-
-        switch (this.currentImgCarouselDot) {
-            case 3:
-                this.currentImgCarouselDot = 0
-                break
-            case -1:
-                this.currentImgCarouselDot = 2
-        }
-
-        $$('.carousel-dot')[this.currentImgCarouselDot].classList.add('carousel-dot--active')
-
-        $$('.carousel-dot').forEach((e, i) => {
-            if (!(this.currentImgCarouselDot == i) && e.classList.contains('carousel-dot--active'))
-                e.classList.remove('carousel-dot--active')
-        })
-        setTimeout(() => {
-            imgCarouselSection.style = `transform: translate(${this.currentImgCarouselTransition}px, 0px)`
-        }, 500)
+        },
     },
 
     chat: function () {
@@ -1136,26 +1137,26 @@ const web = {
         $('.imgCarousel-btn--right').onclick = () => {
             if (!this.isCarousel) {
                 this.isCarousel = true
-                this.clearIntervalShopDeco()
+                this.shopDeco.clearIntervalShopDeco(this)
                 this.currentImgCarouselDot++
                 this.currentImgCarouselTransition -= 1200
-                this.loadShopDeco()
+                this.shopDeco.loadShopDeco(this)
                 setTimeout(() => {
                     this.isCarousel = false
-                    this.runInterval()
+                    this.shopDeco.runInterval(this)
                 }, 500)
             }
         }
         $('.imgCarousel-btn--left').onclick = () => {
             if (!this.isCarousel) {
-                this.clearIntervalShopDeco()
+                this.shopDeco.clearIntervalShopDeco(this)
                 this.isCarousel = true
                 this.currentImgCarouselDot--
                 this.currentImgCarouselTransition += 1200
-                this.loadShopDeco()
+                this.shopDeco.loadShopDeco(this)
                 setTimeout(() => {
                     this.isCarousel = false
-                    this.runInterval()
+                    this.shopDeco.runInterval(this)
                 }, 500)
             }
         }
@@ -1163,7 +1164,7 @@ const web = {
             e.onclick = () => {
                 if (!this.isCarousel) {
                     this.isCarousel = true
-                    this.clearIntervalShopDeco()
+                    this.shopDeco.clearIntervalShopDeco(this)
                     this.currentImgCarouselDot = i
                     switch (i) {
                         case 0:
@@ -1176,10 +1177,10 @@ const web = {
                             this.currentImgCarouselTransition = -3600
                             break
                     }
-                    this.loadShopDeco()
+                    this.shopDeco.loadShopDeco(this)
                     setTimeout(() => {
                         this.isCarousel = false
-                        this.runInterval()
+                        this.shopDeco.runInterval(this)
                     }, 500)
                 }
             }
@@ -1313,7 +1314,7 @@ const web = {
         this.chat()
         this.loadCart()
         this.loadProduct()
-        this.runInterval()
+        this.shopDeco.runInterval(this)
 
         this.handleEvent()
     },
