@@ -937,8 +937,8 @@ const web = {
             if (document.documentElement.scrollTop > 750) up.style = 'display: flex'
             else up.style = 'display: none'
         }
-        // notification
-        function toggle(parentDiv, className, content, animation, time, cb) {
+
+        function toggle(parentDiv, className, content, animation, cb) {
             const newDiv = document.createElement('div')
             parentDiv.onmouseover = (e) => {
                 if (!(parentDiv.lastChild == newDiv)) {
@@ -950,38 +950,41 @@ const web = {
                 if (cb) cb(parentDiv)
             }
             parentDiv.onmouseleave = (e) => {
-                if (parentDiv.lastChild == newDiv) newDiv.style = `animation: ${animation}Out ease-in .2s;`
-                setTimeout(() => {
-                    newDiv.classList.remove(className)
-                    if (parentDiv.lastChild == newDiv) {
-                        parentDiv.removeChild(newDiv)
-                    }
-                }, time)
+                newDiv.style = `animation: ${animation}Out ease-in .2s;`
+                newDiv.addEventListener(
+                    'animationend',
+                    () => {
+                        if (parentDiv.lastChild == newDiv) {
+                            parentDiv.removeChild(newDiv)
+                        }
+                    },
+                    { once: true },
+                )
             }
         }
-        const notifiList = this.user.notifies.map(
-            (notifi) => `
-            <div class="new-notifi__item notifi-${notifi.status}">
+        // notification
+        const notificationList = this.user.notifies.map(
+            (notification) => `
+            <div class="new-notification__item notification-${notification.status}">
                 <a href="#!">
-                    <img src="${notifi.image}" alt="">
-                    <div class="new-notifi__item-content">
-                        <h3>${notifi.title}</h3>
-                            <p>${notifi.content}</p>
+                    <img src="${notification.image}" alt="">
+                    <div class="new-notification__item-content">
+                        <h3>${notification.title}</h3>
+                            <p>${notification.content}</p>
                     </div>
                 </a>
             </div>
         `,
         )
         toggle(
-            $('.navbar__item--notifi'),
-            'new-notifi',
-            `<div class="new-notifi__header">Thông Báo Mới Nhận</div>
-            <div class="new-notifi__list">
-                ${notifiList.join('\n')}
+            $('.navbar__item--notification'),
+            'new-notification',
+            `<div class="new-notification__header">Thông Báo Mới Nhận</div>
+            <div class="new-notification__list">
+                ${notificationList.join('\n')}
             </div>
-            <a class="new-notifi__footer" href="#!"><span>Xem tất cả</span></a>`,
+            <a class="new-notification__footer" href="#!"><span>Xem tất cả</span></a>`,
             'fade',
-            100,
             (e) => (e.querySelector('.notification--icon').innerHTML = `<i class="fa-regular fa-bell"></i> Thông Báo`),
         )
 
@@ -993,7 +996,6 @@ const web = {
         <a href="#!"><span>Tiếng Việt</span></a>
         <a href="#!"><span>English</span></a>`,
             'fade',
-            100,
         )
         // user
         toggle(
@@ -1004,7 +1006,6 @@ const web = {
         <a href="#!"><span>Đơn Mua</span></a>
         <a href="#!"><span>Đăng Xuất</span></a>`,
             'fade',
-            100,
         )
         // search input
         const searchInput = $('.search-input')
@@ -1084,7 +1085,6 @@ const web = {
                 <p>Chưa có sản phẩm</p>
             </div>`,
                 'fade',
-                100,
             )
         } else {
             toggle(
@@ -1100,7 +1100,6 @@ const web = {
                 <a href="#!" class="watch-product">Xem Giỏ Hàng</a>
             </div>`,
                 'fade',
-                100,
             )
         }
         // shop menu more
@@ -1109,7 +1108,7 @@ const web = {
                 return `<div class="shop-menu--item-show"><a class="shop-menu--item" data-index = "${i}" href="#products-section">${category.name}</a></div>`
             }
         })
-        toggle($('.shop-menu--more'), 'more-nav', `<ul>${htmlShopMenuMore.join('')}</ul>`, 'op', 150)
+        toggle($('.shop-menu--more'), 'more-nav', `<ul>${htmlShopMenuMore.join('')}</ul>`, 'op')
         // follow
         const btnFollow = $('.btn--follow button')
         btnFollow.onclick = () => {
@@ -1127,9 +1126,11 @@ const web = {
         // shop menu
         $('.shop-menu').onclick = (e) => {
             const categoryNode = e.target.closest('.shop-menu--item')
-            this.currentCategoryIndex = categoryNode.dataset.index
-            this.currentPagProduct = 1
-            this.loadProduct()
+            if (categoryNode) {
+                this.currentCategoryIndex = categoryNode.dataset.index
+                this.currentPagProduct = 1
+                this.loadProduct()
+            }
         }
         // shop imgCarousel
         $('.imgCarousel-btn--right').onclick = () => {
