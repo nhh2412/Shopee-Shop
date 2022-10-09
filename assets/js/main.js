@@ -1,4 +1,6 @@
 'use strict'
+const $ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
 const web = {
     currentCategoryIndex: 0,
     currentImgCarouselTransition: -1200,
@@ -459,8 +461,6 @@ const web = {
         ],
     },
     render: function () {
-        const $ = document.querySelector.bind(document)
-        const $$ = document.querySelectorAll.bind(document)
         // notification
         const notificationIcon = $('.notification--icon')
         const notificationUnread = this.user.notifies.filter((e) => e.status === 'unread').length
@@ -657,7 +657,6 @@ const web = {
     },
 
     loadCart: function () {
-        const $ = document.querySelector.bind(document)
         const quantityCartProduct = this.user.cart.length
 
         $('.cart-icon').innerHTML = '<i class="fa-solid fa-cart-shopping"></i>'
@@ -700,8 +699,6 @@ const web = {
     },
 
     loadProduct: function () {
-        const $ = document.querySelector.bind(document)
-        const $$ = document.querySelectorAll.bind(document)
         const miniPagCurrent = $('.mini-pagination__state--current')
         const miniPagBtnL = $('.mini-pagination-button-left')
         const miniPagBtnR = $('.mini-pagination-button-right')
@@ -787,8 +784,6 @@ const web = {
         },
 
         loadShopDeco: function (_this) {
-            const $ = document.querySelector.bind(document)
-            const $$ = document.querySelectorAll.bind(document)
             const imgCarouselSection = $('.imgCarousel--section')
             imgCarouselSection.style = `transform: translate(${_this.currentImgCarouselTransition}px, 0px);transition: all 500ms ease 0s`
             switch (_this.currentImgCarouselTransition) {
@@ -826,7 +821,6 @@ const web = {
     },
 
     chat: function () {
-        const $ = document.querySelector.bind(document)
         const buttonChat = document.createElement('button')
         const chat = $('#chat')
 
@@ -928,8 +922,6 @@ const web = {
     },
 
     handleEvent: function () {
-        const $ = document.querySelector.bind(document)
-        const $$ = document.querySelectorAll.bind(document)
         // scroll up-btn
         const up = document.querySelector('#up')
 
